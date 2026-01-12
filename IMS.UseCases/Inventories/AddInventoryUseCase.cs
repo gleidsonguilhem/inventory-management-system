@@ -1,4 +1,5 @@
 ﻿using IMS.CoreBusiness;
+using IMS.UseCases.Inventories.Interfaces;
 using IMS.UseCases.PluginInterfaces;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Text;
 
 namespace IMS.UseCases.Inventories
 {
-    internal class AddInventoryUseCase : IAddInventoryUseCase
+    public class AddInventoryUseCase : IAddInventoryUseCase
     {
-        private IInventoryRepository inventoryRepository;
+        private readonly IInventoryRepository inventoryRepository;
 
         public AddInventoryUseCase(IInventoryRepository inventoryRepository)
         {
