@@ -1,5 +1,5 @@
 ﻿using IMS.CoreBusiness;
-using IMS.UseCases.PluginInterfaces;
+using IMS.UseCases.Inventories.Interfaces;
 
 namespace IMS.Plugins.InMemory
 {
@@ -23,6 +23,8 @@ namespace IMS.Plugins.InMemory
             if (_inventories.Any(x => x.InventoryName.Equals(inventory.InventoryName, StringComparison.OrdinalIgnoreCase)))
             { return Task.CompletedTask; }
 
+            //Create a new ID
+            //First, get the max id from the inventories then add 1.
             var maxId = _inventories.Max(x => x.InventoryId);
             inventory.InventoryId = maxId + 1;
 
@@ -56,6 +58,11 @@ namespace IMS.Plugins.InMemory
             }
 
             return Task.CompletedTask;
+        }
+
+        public async Task<Inventory> GetInventoryByIdAsync(int inventoryId)
+        {
+            return await Task.FromResult(_inventories.First(x => x.InventoryId == inventoryId));
         }
     }
 }

@@ -6,21 +6,18 @@ using System.Text;
 
 namespace IMS.UseCases.Inventories
 {
-    public class EditInventoryUseCase : IEditInventoryUseCase
+    public class ViewInventoryByIdUseCase : IViewInventoryByIdUseCase
     {
         private readonly IInventoryRepository inventoryRepository;
 
-        public EditInventoryUseCase(IInventoryRepository inventoryRepository)
+        public ViewInventoryByIdUseCase(IInventoryRepository inventoryRepository)
         {
             this.inventoryRepository = inventoryRepository;
         }
 
-
-        public async Task ExecuteAsync(Inventory inventory)
+        public async Task<Inventory> ExecuteAsync(int inventoryId)
         {
-            await this.inventoryRepository.UpdateInventoryAsync(inventory);
-
+            return await inventoryRepository.GetInventoryByIdAsync(inventoryId);
         }
-
     }
 }
