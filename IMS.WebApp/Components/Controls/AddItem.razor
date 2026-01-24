@@ -3,7 +3,6 @@
 @inject IAddInventoryUseCase AddInventoryUseCase;
 @inject NavigationManager NavigationManager;
 
-
 <h3>Add New Item</h3>
 
 <EditForm Model="inventory" FormName="formInventory" OnValidSubmit="Save">
@@ -17,7 +16,7 @@
         <label for="name">Inventory Name</label>
         <InputText 
             id="name" 
-            @bind-Value="inventory.InventoryName" 
+            @bind-Value="inventory.InventoryName"
             class="form-control">
         </InputText>
         <!-- Add validation per field -->
@@ -62,7 +61,6 @@
         await AddInventoryUseCase.ExecuteAsync(inventory);
 
         NavigationManager.NavigateTo("/inventories");
-
     }
 
 }
