@@ -5,7 +5,7 @@
 @inject IEditInventoryUseCase EditInventoryUseCase;
 @inject NavigationManager NavigationManager;
 
-<h3>Edit Inventory - @inventory.InventoryName</h3>
+<h3>Edit Inventory  </h3>
 <br />
 <br />
 
@@ -67,6 +67,11 @@
     protected override async Task OnParametersSetAsync()
     {
         this.inventory ??= await ViewInventoryByIdUseCase.ExecuteAsync(this.InvId);
+
+        if (this.inventory is null)
+        {
+            NavigationManager.NotFound();
+        }
     }
 
     private async Task Update()
@@ -74,5 +79,4 @@
         await EditInventoryUseCase.ExecuteAsync(inventory);
         NavigationManager.NavigateTo("/inventories");
     }
-
 }
